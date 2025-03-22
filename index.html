@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- font imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <!-- Initializations -->
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>What's the Weather?</title>
+</head>
+
+<body>
+
+  <div id="weather-box">
+    <h1>What's the Weather?</h1>
+    <input type="text" id="city-input" placeholder="Enter city">
+    <div><button id="search" onclick="calculateWeather()">Search</button></div>
+    <img id="weather-icon">
+    <div id="temperature-container"></div>
+    <div id="weather-description"></div>
+    <div id="hourly-forecast"></div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
