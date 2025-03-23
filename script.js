@@ -26,4 +26,25 @@ function calculateWeather() {
       iconElement.style.display = "block";
     })
     .catch(err => alert('Error fetching weather data'));
+
+  // New forecast implementation
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`)
+    .then(res => res.json())
+    .then(forecastData => {
+      const forecastBox = document.getElementById("hourly-forecast");
+      forecastBox.innerHTML = '';
+
+      for (let i = 0; i < 8; i++) {
+        const hourData = forecastData.list[i];
+        const hour = new Date(hourData.dt * 1000).getHours();
+        const temp = Math.round(hourData.main.temp - 273.15);
+
+        forecastBox.innerHTML += `
+          <div class="hourly-container">
+            <span>${hour}:00</span>
+            <img src="https://openweathermap.org/img/wn/${hourData.weather[0].icon}.png">
+            <span>${temp}°C</span>
+          </div>`;
+      }
+    });
 }
