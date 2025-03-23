@@ -4,7 +4,8 @@
 // - Pexels: https://www.pexels.com/api/
 
 const apiKey = "";
-const city = document.getElementById('city-input').value;
+const pexelsKey = "";
+
 
 function calculateWeather() {
   const city = document.getElementById('city-input').value;
@@ -47,4 +48,14 @@ function calculateWeather() {
           </div>`;
       }
     });
+  fetch(`https://api.pexels.com/v1/search?query=${city}&per_page=1`, {
+    headers: { Authorization: pexelsKey }
+  })
+    .then(res => res.json())
+    .then(photoData => {
+      if (photoData.photos?.length > 0) {
+        document.body.style.backgroundImage = `url('${photoData.photos[0].src.large2x}')`;
+      }
+    })
+    .catch(() => console.log('Background fetch failed'));
 }
